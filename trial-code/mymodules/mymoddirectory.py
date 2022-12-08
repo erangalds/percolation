@@ -1,0 +1,1 @@
+message = 'My Module placed in a directory'
