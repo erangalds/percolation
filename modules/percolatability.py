@@ -175,3 +175,89 @@ def printResult(gridRows,validColumns,numberOfRows,numberOfColumns):
 
     print(' ')
     print('Thank you!')
+
+
+def printPretty(gridRows, validColumns):
+    from prettytable import PrettyTable
+
+    colNames = list()
+
+    for i in range(0, len(gridRows[0])):
+        colNames.append('Col ' + str(i))
+    
+    # Specify the Column Names while initializing the Table
+    myTable = PrettyTable(colNames)
+
+    for row in gridRows:
+        myTable.add_row(row)
+
+    
+    myTable.add_row(validColumns)
+    
+    print(myTable)
+
+def saveToHTML(gridRows, validColumns):
+
+    colNames = list()
+
+    for i in range(0, len(gridRows[0])):
+        colNames.append('Col ' + str(i))
+
+
+    html_content = '''
+    <html>
+    <body>
+    <table>
+    <tr>
+    '''
+
+    th_row = ''''''
+
+    for col in colNames:
+        th_row += '''<th>  ''' + '''____'''+ ''' </th>'''
+
+    html_content = html_content + th_row 
+
+    html_content += '''</tr>'''
+
+    th_row = ''''''
+    
+    for col in colNames:
+        th_row += '''<th> | ''' + col + '''| </th>'''
+
+    html_content = html_content  + '''<tr>''' + th_row 
+
+    html_content += '''</tr>'''
+
+    th_row = ''''''
+
+    for col in colNames:
+        th_row += '''<th>  ''' + '''____'''+ ''' </th>'''
+
+    html_content = html_content + '''<tr>''' + th_row 
+
+    html_content += '''</tr>'''
+
+
+    trow = ''''''
+
+    for row in gridRows:
+        th = '''<tr>'''
+        for col in row:
+            if str(col) == '  ':
+                th += '''<td> | ''' + '--' + ''' | </td>'''
+            else:
+                th += '''<td> | ''' + str(col) + ''' | </td>'''
+
+        th += '''</tr>'''
+
+        trow += th 
+
+    html_content += trow
+
+    html_content += '''</table></body></html>'''
+
+    with open('output.html', 'w') as f:
+        f.write(html_content)
+        f.close()
+

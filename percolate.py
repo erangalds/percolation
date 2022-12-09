@@ -50,3 +50,7 @@ if __name__ == '__main__':
         #print(validColumns)
 
         p.printResult(populatedGrid,validColumns, numberOfRows, numberOfColumns)
+
+        p.printPretty(populatedGrid, validColumns)
+
+        p.saveToHTML(populatedGrid, validColumns)
